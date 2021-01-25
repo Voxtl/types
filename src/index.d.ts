@@ -1,17 +1,37 @@
+import type { v5 as uuid } from "uuid" 
+
 declare module "@voxtl/types" {
-    interface UserData {
-        id: string
-        profile : Profile
+    type GlobalRole = null | "Moderator" | "Administrator"
+
+    interface User {
+        id: typeof uuid,
+        username: string,
+        profile: {
+            avatar: string,
+            description: string,
+            bio: string
+        },
+        created: Date,
+        verified: boolean,
+        global_role: GlobalRole
     }
 
-    interface Profile {
-        avatar: string,
-        bio: string,
-        description: string,
+    interface Category {
+        id: typeof uuid,
+        slug: string,
+        name: string,
+        visible: boolean,
+        created: Date
     }
 
-    interface NebulaData {
-        event: string,
-        data: unknown //todo
+    interface Channel extends User {
+        banned?: User[],
+        moderators: User[],
+        category: Category,
+        viewers: number
+    }
+
+    interface Self extends User {
+        stream_key: string
     }
 }
