@@ -24,7 +24,8 @@ declare module "@voxtl/types" {
         created: Date
     }
 
-    interface Channel extends User {
+    interface Channel {
+        id: typeof uuid,
         banned?: User[],
         moderators: User[],
         category: Category,
