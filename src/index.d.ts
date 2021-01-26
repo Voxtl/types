@@ -27,7 +27,7 @@ declare module "@voxtl/types" {
     interface Channel {
         id: typeof uuid,
         banned?: User[],
-        moderators: User[],
+        moderators?: User[],
         category: Category,
         viewers: number
     }
