@@ -61,7 +61,6 @@ declare module "@voxtl/types" {
         verified: boolean,
         global_role: GlobalRole,
         created_at: Date,
-        updated_at: Date,
         profile_id: typeof uuid,
         channel_id: typeof uuid
     }
