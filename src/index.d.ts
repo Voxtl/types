@@ -7,9 +7,9 @@ declare module "@voxtl/types" {
         id: typeof uuid,
         username: string,
         profile: {
-            avatar: string,
-            description: string,
-            bio: string
+            avatar: string | null,
+            description: string | null,
+            bio: string | null
         },
         created: Date,
         verified: boolean,
