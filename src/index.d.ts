@@ -69,8 +69,8 @@ declare module "@voxtl/types" {
 
     interface _ChannelAttributes {
         id: typeof uuid,
-        banned_ids?: typeof uuid[],
-        moderator_ids?: typeof uuid[],
+        banned_ids: typeof uuid[],
+        moderator_ids: typeof uuid[],
         category_ids: typeof uuid[],
         user_id: typeof uuid
     }
