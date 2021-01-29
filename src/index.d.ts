@@ -17,15 +17,17 @@ declare module "@voxtl/types" {
     interface User {
         id: typeof uuid,
         username: string,
-        profile: {
-            avatar: string | null,
-            description: string | null,
-            bio: string | null
-        },
+        profile: Profile
         verified: boolean,
         global_role: GlobalRole,
         created_at: Date,
         links: UserLinks
+    }
+
+    interface Profile {
+        avatar?: string,
+        description?: string,
+        bio?: string
     }
 
     interface BulkUser {
@@ -67,9 +69,17 @@ declare module "@voxtl/types" {
 
     interface _ChannelAttributes {
         id: typeof uuid,
-        banned?: User[],
-        moderators?: User[],
-        category: Category[],
+        banned_ids?: typeof uuid[],
+        moderator_ids?: typeof uuid[],
+        category_ids: typeof uuid[],
+        user_id: typeof uuid
+    }
+
+    interface _ProfileAttributes {
+        id: typeof uuid,
+        avatar?: string,
+        bio?: string,
+        description?: string,
         user_id: typeof uuid
     }
 }
