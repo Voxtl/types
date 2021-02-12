@@ -11,6 +11,7 @@ declare module "@voxtl/types" {
         readonly id: typeof uuid,
 
         permissions: Permissions,
+        users: User[] | null
 
         readonly created_at: Date,
         readonly updated_at: Date
@@ -18,6 +19,9 @@ declare module "@voxtl/types" {
 
     interface ChannelRole {
         readonly id: typeof uuid,
+
+        permissions: Permissions
+        viewers: Viewer[] | null
 
         readonly created_at: Date,
         readonly updated_at: Date
@@ -31,7 +35,7 @@ declare module "@voxtl/types" {
         channel: Channel,
         viewers: Viewer[] | null,
         verified: boolean,
-        role: GlobalRole,
+        roles: GlobalRole[] | null,
 
         stream_key: typeof uuid
 
@@ -45,7 +49,7 @@ declare module "@voxtl/types" {
 
         user: User,
         channel: Channel,
-        role: ChannelRole,
+        roles: ChannelRole[] | null,
         banned: boolean,
 
         readonly created_at: Date
