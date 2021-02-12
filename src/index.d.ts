@@ -15,71 +15,49 @@ declare module "@voxtl/types" {
     ]
 
     interface User {
-        id: typeof uuid,
+        readonly id: typeof uuid,
+        readonly profile_id: typeof uuid,
+        readonly channel_id: typeof uuid,
+
         username: string,
         profile: Profile
         verified: boolean,
         global_role: GlobalRole,
-        created_at: Date,
         links: UserLinks
+        readonly stream_key: typeof uuid
+
+        readonly created_at: Date,
+        readonly updated_at: Date,
     }
 
     interface Profile {
-        avatar?: string,
-        description?: string,
-        bio?: string
-    }
+        readonly id: typeof uuid
+        avatar: string | null,
+        description: string | null,
+        bio: string | null
 
-    interface BulkUser {
-        id: typeof uuid,
-        username: string,
-        verified: boolean,
-        global_role: GlobalRole,
-        created_at: Date,
+        readonly created_at: Date
+        readonly updated_at: Date
     }
 
     interface Category {
-        id: typeof uuid,
+        readonly id: typeof uuid,
         name: string,
         visible: boolean,
-        created_at: Date
+        channels_using: number,
+
+        readonly created_at: Date
+        readonly updated_at: Date
     }
 
     interface Channel {
-        id: typeof uuid,
-        banned?: User[],
-        moderators?: User[],
-        category: Category[],
+        readonly id: typeof uuid,
+        banned_ids: null | typeof uuid[],
+        moderator_ids: null | typeof uuid[],
+        category_ids: typeof uuid[] | null,
         viewers: number
-    }
 
-    interface Self extends User {
-        stream_key: string
-    }
-
-    interface _UserAttributes {
-        id: typeof uuid,
-        username: string,
-        verified: boolean,
-        global_role: GlobalRole,
-        created_at: Date,
-        profile_id: typeof uuid,
-        channel_id: typeof uuid
-    }
-
-    interface _ChannelAttributes {
-        id: typeof uuid,
-        banned_ids: typeof uuid[],
-        moderator_ids: typeof uuid[],
-        category_ids: typeof uuid[],
-        user_id: typeof uuid
-    }
-
-    interface _ProfileAttributes {
-        id: typeof uuid,
-        avatar?: string,
-        bio?: string,
-        description?: string,
-        user_id: typeof uuid
+        readonly created_at: Date
+        readonly updated_at: Date
     }
 }
