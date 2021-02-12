@@ -67,10 +67,10 @@ declare module "@voxtl/types" {
     interface Category {
         readonly id: typeof uuid,
 
-        user: User,
+        author: User,
         name: string,
         visible: boolean,
-        channels_using?: number,
+        channels: number,
 
         readonly created_at: Date
         readonly updated_at: Date
