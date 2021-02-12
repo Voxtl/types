@@ -1,9 +1,27 @@
 import type { v5 as uuid } from "uuid" 
 
 declare module "@voxtl/types" {
-    type GlobalRole = null | "Moderator" | "Administrator"
+    enum Permissions {
+        NORMAL = 0,
+        MODERATOR = 1,
+        ADMIN = 2,
+    }
 
-    type ChannelRole = null | string
+    interface GlobalRole {
+        readonly id: typeof uuid,
+
+        permissions: Permissions,
+
+        readonly created_at: Date,
+        readonly updated_at: Date
+    }
+
+    interface ChannelRole {
+        readonly id: typeof uuid,
+
+        readonly created_at: Date,
+        readonly updated_at: Date
+    }
 
     interface User {
         readonly id: typeof uuid,
@@ -11,11 +29,11 @@ declare module "@voxtl/types" {
         username: string,
         profile: Profile,
         channel: Channel,
-        viewer: Viewer[]
+        viewers: Viewer[] | null,
         verified: boolean,
         role: GlobalRole,
 
-        readonly stream_key: typeof uuid
+        stream_key: typeof uuid
 
         readonly created_at: Date,
         readonly updated_at: Date,
@@ -27,7 +45,8 @@ declare module "@voxtl/types" {
 
         user: User,
         channel: Channel,
-        role: ChannelRole
+        role: ChannelRole,
+        banned: boolean,
 
         readonly created_at: Date
         readonly updated_at: Date
@@ -51,7 +70,7 @@ declare module "@voxtl/types" {
         user: User,
         name: string,
         visible: boolean,
-        channels_using: number,
+        channels_using?: number,
 
         readonly created_at: Date
         readonly updated_at: Date
@@ -61,11 +80,9 @@ declare module "@voxtl/types" {
         readonly id: typeof uuid,
 
         user: User,
-        banned: Viewer[] | null,
-        moderators: Viewer[] | null,
         categories: Category[],
         viewers: Viewer[],
-        watching: number
+        watching?: number
 
         readonly created_at: Date
         readonly updated_at: Date
