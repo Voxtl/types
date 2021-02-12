@@ -70,7 +70,7 @@ declare module "@voxtl/types" {
         author: User,
         name: string,
         visible: boolean,
-        channels: number,
+        channels: Channel[],
 
         readonly created_at: Date
         readonly updated_at: Date

@@ -1,6 +1,6 @@
 {
   "name": "@voxtl/types",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Type Declarations for Voxtl",
   "main": "",
   "types": "./src/index.d.ts",
